@@ -3,6 +3,9 @@ package com.davidliu.bartapi
 import com.davidliu.bartapi.advisories.GetAdvisoriesResponse
 import com.davidliu.bartapi.common.Direction
 import com.davidliu.bartapi.estimated.GetEstimatedDepartureTimesResponse
+import com.davidliu.bartapi.routes.GetRouteInfoResponse
+import com.davidliu.bartapi.routes.GetRoutesResponse
+import com.davidliu.bartapi.stations.GetAllStationsResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -23,4 +26,18 @@ interface BartApi {
         @Query("dir") direction: Direction? = null,
         @Query("key") key: String = DEFAULT_PUBLIC_API_KEY
     ): Call<GetEstimatedDepartureTimesResponse>
+
+    @GET("route.aspx?cmd=routeinfo&json=y")
+    fun getRouteInfo(
+        @Query("route") route: Int,
+        @Query("sched") sched: Int? = null,
+        @Query("date") date: String = "now",
+        @Query("key") key: String = DEFAULT_PUBLIC_API_KEY
+    ): Call<GetRouteInfoResponse>
+
+    @GET("route.aspx?cmd=routes&json=y")
+    fun getRoutes(@Query("key") key: String = DEFAULT_PUBLIC_API_KEY): Call<GetRoutesResponse>
+
+    @GET("stn.aspx?cmd=stns&json=y")
+    fun getAllStations(@Query("key") key: String = DEFAULT_PUBLIC_API_KEY): Call<GetAllStationsResponse>
 }

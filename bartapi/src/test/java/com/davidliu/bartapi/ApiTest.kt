@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class ApiTest {
 
     val gson = GsonBuilder()
         .registerTypeAdapter(Boolean::class.java, BooleanSerializer())
@@ -27,14 +27,32 @@ class ExampleUnitTest {
     val api = retrofit.create(BartApi::class.java)
 
     @Test
-    fun testAdvisoriesApi() {
+    fun testAdvisories() {
         val advisories = api.getAdvisories().execute().body()
         println(advisories)
     }
 
     @Test
-    fun testEstimatedTimesApi() {
+    fun testEstimatedTimes() {
         val estimates = api.getEstimatedDepartureTimes("RICH").execute().body()
         println(estimates)
+    }
+
+    @Test
+    fun testRouteInfo() {
+        val routeInfo = api.getRouteInfo(1).execute().body()
+        println(routeInfo)
+    }
+
+    @Test
+    fun testRoutes() {
+        val allRoutes = api.getRoutes().execute().body()
+        println(allRoutes)
+    }
+
+    @Test
+    fun testAllStations() {
+        val allStations = api.getAllStations().execute().body()
+        println(allStations)
     }
 }

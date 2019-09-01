@@ -51,6 +51,11 @@ class ApiTest {
     }
 
     @Test
+    fun testStationInfo() {
+        val stationInfo = api.getStationInfo("POWL").execute().body()
+        println(stationInfo)
+    }
+    @Test
     fun testAllStations() {
         val allStations = api.getAllStations().execute().body()
         println(allStations)

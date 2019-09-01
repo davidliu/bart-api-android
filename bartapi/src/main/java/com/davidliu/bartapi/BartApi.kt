@@ -13,9 +13,12 @@ import retrofit2.http.Query
 
 interface BartApi {
     companion object {
+        /**
+         * This is the default public API key that BART supplies for use.
+         * You can supply your own key or use this one if not available.
+         */
         const val DEFAULT_PUBLIC_API_KEY = "MW9S-E7SL-26DU-VV8V"
     }
-
 
     @GET("bsa.aspx?cmd=bsa&json=y")
     fun getAdvisories(@Query("key") key: String = DEFAULT_PUBLIC_API_KEY): Call<GetAdvisoriesResponse>
@@ -47,4 +50,7 @@ interface BartApi {
 
     @GET("stn.aspx?cmd=stns&json=y")
     fun getAllStations(@Query("key") key: String = DEFAULT_PUBLIC_API_KEY): Call<GetAllStationsResponse>
+
+    @GET("stn.aspx?cmd=stns&json=y")
+    suspend fun getAllStationsSuspend(@Query("key") key: String = DEFAULT_PUBLIC_API_KEY): GetAllStationsResponse
 }

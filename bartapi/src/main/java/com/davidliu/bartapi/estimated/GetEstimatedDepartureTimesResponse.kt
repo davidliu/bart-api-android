@@ -1,31 +1,40 @@
 package com.davidliu.bartapi.estimated
 
+import android.os.Parcelable
 import com.davidliu.bartapi.common.ResponseRoot
+import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class GetEstimatedDepartureTimesResponse(
     val root: GetEstimatedDepartureTimesRoot
-)
+) : Parcelable
 
+@Parcelize
 data class GetEstimatedDepartureTimesRoot(
     val station: List<EstimatedTimesStation>
-) : ResponseRoot()
+) : ResponseRoot(), Parcelable
 
+@Parcelize
 data class EstimatedTimesStation(
     val name: String,
     val abbr: String,
-    val etd: List<EstimatedRoute>
-)
+    @SerializedName("etd")
+    val routes: List<EstimatedRoute>
+) : Parcelable
 
+@Parcelize
 data class EstimatedRoute(
     val destination: String,
     val abbr: String,
     val limited: Int,
-    val estimate: List<EstimateDepartureTime>
-)
+    @SerializedName("estimate")
+    val estimates: List<EstimateDepartureTime>
+) : Parcelable
 
+@Parcelize
 data class EstimateDepartureTime(
-    val minutes: Int,
+    val minutes: String,
     val platform: Int,
     val direction: String,
     val length: Int,
@@ -33,4 +42,4 @@ data class EstimateDepartureTime(
     val hexcolor: String,
     val bikeflag: Boolean,
     val delay: Int
-)
+) : Parcelable

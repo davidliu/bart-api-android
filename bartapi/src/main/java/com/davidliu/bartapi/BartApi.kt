@@ -31,6 +31,14 @@ interface BartApi {
         @Query("key") key: String = DEFAULT_PUBLIC_API_KEY
     ): Call<GetEstimatedDepartureTimesResponse>
 
+    @GET("etd.aspx?cmd=etd&json=y")
+    suspend fun getEstimatedDepartureTimesSuspend(
+        @Query("orig") station: String,
+        @Query("plat") platform: Int? = null,
+        @Query("dir") direction: Direction? = null,
+        @Query("key") key: String = DEFAULT_PUBLIC_API_KEY
+    ): GetEstimatedDepartureTimesResponse
+
     @GET("route.aspx?cmd=routeinfo&json=y")
     fun getRouteInfo(
         @Query("route") route: Int,

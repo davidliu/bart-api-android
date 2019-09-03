@@ -1,6 +1,8 @@
 package com.davidliu.bartapi.stations
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.davidliu.bartapi.common.ResponseRoot
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -23,9 +25,12 @@ data class AllStationsContainer(
 ) : Parcelable
 
 @Parcelize
+@Entity
 data class StationMeta(
+    @SerializedName("abbr")
+    @PrimaryKey
+    val id: String,
     val name: String,
-    val abbr: String,
     val latitude: Double,
     val longitude: Double,
     val address: String,

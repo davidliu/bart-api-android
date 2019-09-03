@@ -8,5 +8,4 @@ open class ResponseRoot() {
     lateinit var uri: Map<String, String>
     lateinit var date: String
     lateinit var time: String
-    lateinit var message: String
 }

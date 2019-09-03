@@ -7,4 +7,13 @@ enum class Direction(val value: String) {
     override fun toString(): String {
         return value
     }
+
+    companion object {
+        fun fromString(str: String?) =
+            when (str?.toLowerCase()?.get(0)) {
+                'n' -> NORTHBOUND
+                's' -> SOUTHBOUND
+                else -> null
+            }
+    }
 }

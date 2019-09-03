@@ -20,7 +20,7 @@ data class EstimatedTimesStation(
     val name: String,
     val abbr: String,
     @SerializedName("etd")
-    val routes: List<EstimatedRoute>
+    val routes: List<EstimatedRoute>?
 ) : Parcelable
 
 @Parcelize

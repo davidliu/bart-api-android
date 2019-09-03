@@ -26,7 +26,7 @@ data class EstimatedTimesStation(
 @Parcelize
 data class EstimatedRoute(
     val destination: String,
-    val abbr: String,
+    val abbreviation: String,
     val limited: Int,
     @SerializedName("estimate")
     val estimates: List<EstimateDepartureTime>

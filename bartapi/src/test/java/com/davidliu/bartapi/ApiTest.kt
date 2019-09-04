@@ -1,11 +1,14 @@
 package com.davidliu.bartapi
 
 import com.davidliu.bartapi.gson.BooleanSerializer
+import com.deviange.bartapi.mock.BartMockDispatcher
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import okhttp3.mockwebserver.MockWebServer
 import org.junit.Test
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -18,10 +21,15 @@ class ApiTest {
         .registerTypeAdapter(Boolean::class.java, BooleanSerializer())
         .create()
     val okHttpClient = OkHttpClient.Builder().build()
+
+    val server = MockWebServer().apply {
+        dispatcher = BartMockDispatcher()
+    }
+    val baseUrl = server.url("/api/")
     val retrofit = Retrofit.Builder()
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
-        .baseUrl("https://api.bart.gov/api/")
+        .baseUrl(baseUrl)
         .build()
 
     val api = retrofit.create(BartApi::class.java)

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/bart-api-android.iml" filepath="$PROJECT_DIR$/bart-api-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/bartapi/bartapi.iml" filepath="$PROJECT_DIR$/bartapi/bartapi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bartapi-mock/bartapi-mock.iml" filepath="$PROJECT_DIR$/bartapi-mock/bartapi-mock.iml" />
     </modules>
   </component>
 </project>

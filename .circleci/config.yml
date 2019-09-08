@@ -27,11 +27,10 @@ jobs:
           name: Copy Reports
           command: |
             mkdir -p /tmp/circle-artifacts/reports
-            cp --parents ./**/build/reports /tmp/circle-artifacts/reports
+            cp -r --parents ./**/build/reports /tmp/circle-artifacts/reports
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
           path: /tmp/circle-artifacts/reports
           destination: reports
-
       - run:
           name: Copy Test Results
           command: |

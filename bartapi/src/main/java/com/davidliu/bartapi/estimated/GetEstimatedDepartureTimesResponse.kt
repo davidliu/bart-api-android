@@ -34,7 +34,7 @@ data class EstimatedRoute(
 
 @Parcelize
 data class EstimateDepartureTime(
-    val minutes: String,
+    val minutes: Int,
     val platform: Int,
     val direction: String,
     val length: Int,

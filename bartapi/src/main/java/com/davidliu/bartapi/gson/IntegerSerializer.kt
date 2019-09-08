@@ -13,12 +13,11 @@ class IntegerSerializer : JsonSerializer<Int>, JsonDeserializer<Int> {
 
     @Throws(JsonParseException::class)
     override fun deserialize(arg0: JsonElement, arg1: Type, arg2: JsonDeserializationContext): Int? {
-        when (arg1.javaClass) {
-            String::class.java -> {
-                if (arg0.asString.equals("Leaving", true)) {
-                    return 0
-                }
-            }
+        if (arg0.isJsonPrimitive
+            && arg0.asJsonPrimitive.isString
+            && arg0.asString.equals("Leaving", false)
+        ) {
+            return 0
         }
         return arg0.asInt
     }
